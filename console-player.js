@@ -24,14 +24,25 @@ function round(playerSelection, computerSelection) {
     let compare = playerValue - computerValue;
     let winner;
     // 0 is tie, 1 is player, -1 is computer
-    if (compare == 1 || (compare == 2 && playerValue == 2)) {
+    if (compare == 1 || (compare == -2 && playerValue == 0)) {
         winner = 1;
-    } else if (compare = 0) {
+    } else if (compare == 0) {
         winner = 0;
     } else {
         winner = -1;
     }
 
+    let output;
+    switch (winner) {
+        case -1:
+            console.log(`You lose! ${wordFromValue(computerValue)} beats ${wordFromValue(playerValue)}`);
+            break;
+        case 1:
+            console.log(`You win! ${wordFromValue(playerValue)} beats ${wordFromValue(computerValue)}`);
+            break;
+        default:
+            console.log("Tie!");
+    }
 }
 
 function valueFromWord(word) {
