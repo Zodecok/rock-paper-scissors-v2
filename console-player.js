@@ -1,6 +1,5 @@
 function getComputerChoice() {
     let randNum = Math.floor(Math.random() * 3);
-    console.log(randNum);
     let choice;
     switch (randNum) {
         case 0:
@@ -43,6 +42,7 @@ function round(playerSelection, computerSelection) {
         default:
             console.log("Tie!");
     }
+    return winner;
 }
 
 function valueFromWord(word) {
@@ -69,5 +69,20 @@ function wordFromValue(value) {
             word = "Rock";
     }
     return word;
+}
+
+function game() {
+    let score = [0, 0];
+    // player then computer
+    for (let i = 0; i < 2; i++) {
+        let result = 0;
+        while (result == 0) {
+            let playerSelection = prompt("What is your play?", "Error");
+            result = round(playerSelection, getComputerChoice());
+        }
+        let pos = (result > 0) ? 0 : 1;
+        score.splice(pos, 1, score[pos] + 1);
+    }
+    console.log(`Player has won: ${score[0]} times\nComputer has won: ${score[1]} times`);
 }
 
